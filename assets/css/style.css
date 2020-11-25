@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo a {
-  color: #111;
+  color: #fff;
 }
 
 #header .logo a span {
@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu a {
   display: block;
   position: relative;
-  color: #111;
+  color: #fff;
   transition: 0.3s;
   font-size: 13px;
   text-transform: uppercase;
