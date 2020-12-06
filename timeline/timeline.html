@@ -119,6 +119,175 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: normal 16px/1.5 "Helvetica Neue", sans-serif;
+  background: #343a40;
+  color: #fff;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}  /* INTRO SECTION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.intro {
+  background:#1bbd36;
+  padding: 100px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+
+/* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline ul {
+  background: #343a40;
+  padding: 50px 0;
+}
+
+.timeline ul li {
+  list-style-type: none;
+  position: relative;
+  width: 6px;
+  margin: 0 auto;
+  padding-top: 50px;
+  background: #fff;
+}
+
+.timeline ul li::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.timeline ul li div {
+  position: relative;
+  bottom: 0;
+  width: 400px;
+  padding: 15px;
+  background:#1bbd36;
+}
+
+.timeline ul li div::before {
+  content: '';
+  position: absolute;
+  bottom: 7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.timeline ul li:nth-child(odd) div {
+  left: 45px;
+}
+
+.timeline ul li:nth-child(odd) div::before {
+  left: -15px;
+  border-width: 8px 16px 8px 0;
+  border-color: transparent #1bbd36 transparent transparent;
+}
+
+.timeline ul li:nth-child(even) div {
+  left: -439px;
+}
+
+.timeline ul li:nth-child(even) div::before {
+  right: -15px;
+  border-width: 8px 0 8px 16px;
+  border-color: transparent transparent transparent #1bbd36;
+}
+
+time {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+
+/* EFFECTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline ul li::after {
+  transition: background .5s ease-in-out;
+}
+
+.timeline ul li.in-view::after {
+  background: #1bbd36;
+}
+
+.timeline ul li div {
+  visibility: hidden;
+  opacity: 0;
+  transition: all .5s ease-in-out;
+}
+
+.timeline ul li:nth-child(odd) div {
+  transform: translate3d(200px, 0, 0);
+}
+
+.timeline ul li:nth-child(even) div {
+  transform: translate3d(-200px, 0, 0);
+}
+
+.timeline ul li.in-view div {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 900px) {
+  .timeline ul li div {
+    width: 250px;
+  }
+  .timeline ul li:nth-child(even) div {
+    left: -289px;
+    /*250+45-6*/
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .timeline ul li {
+    margin-left: 20px;
+  }
+  .timeline ul li div {
+    width: calc(100vw - 91px);
+  }
+  .timeline ul li:nth-child(even) div {
+    left: 45px;
+  }
+  .timeline ul li:nth-child(even) div::before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #1bbd36 transparent transparent;
+  }
+}
   </style>
 </head>
 
@@ -134,18 +303,19 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.html">Inicio</a></li>
+          <li class="active"><a href="../index.html">Inicio</a></li>
 
-          <li class="drop-down"><a href="">Sobre</a>
+          <!-- <li class="drop-down"><a href="">Sobre</a>
             <ul>
               <li><a href="about.html">Sobre nós</a></li>
               <li><a href="team.html">Equipe</a></li>
             </ul>
-          </li>
+          </li> -->
+          <li><a href="team.html">Equipe</a></li>
 
-          <li><a href="services.html">História</a></li>
-          <li><a href="portfolio.html">Mídias</a></li>
-          <li><a href="interacoes.html">Interações</a></li>
+          <li><a href="../services.html">História</a></li>
+          <li><a href="../portfolio.html">Mídias</a></li>
+          <li><a href="../interacoes.html">Interações</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -166,34 +336,98 @@
       </div>
     </div>
 </main><!-- End #main -->
-<div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
 
 
+        <section class="intro">
+          <div class="container">
+            <h1>Uma breve passagem na história dos dispositivos de música</h1>
+          </div>
+        </section>
+        
+        <section class="timeline">
+          <ul>
+            <li>
+              
+              <div>
+                <time>1877</time>
+                  <img class="img-responsive" src="../assets/img/timeline/phonograph.jpg" height="200" width="300" />
+                <br>
+                O fonógrafo é inventado por Thomas Edison. Uma fina folha de papel alumínio ou papel de cera envolto em um cilídro. O som era gravado ou tocado ao girar o cilídro. Identações no papel eram responsáveis pelo som.
+              
+                </div>
+            </li>
+            <li>
+              <div>
+                <time>1881</time> 
+                <img class="img-responsive" src="../assets/img/timeline/Graphophone.jpg" height="200" width="300" />
+                <br>
+                Volta Laboratory, criado por Alexander Graham Bell, melhorou o fonógrafo criado por Edison, dando-lhe o nome de grafofone. Utilizou cilíndros de papelão revestidos em cera, possibilitando gravações mais longas e duradoras. Mais tarde, em torno de 1890, passou a usarem gravações em discos.
+              
+              </div>
+            </li>
+            <li>
+              <div>
+                <time>1943</time> 
+                <img class="img-responsive" src="../assets/img/timeline/jukebox.jpg" height="300" width="200" />
+                <br>
+                Dispositivos que operavam por moedas passaram a serem chamadas de jukeboxes. Os cilíndros foram trocados por discos e a troca de discos é automatizada. Estava presente em bares, lanchonetes, especialmente populares durante a Segunda Guerra Mundial.
+              </div>
+            </li>
+            <li>
+              <div>
+                <time>1955</time> 
+                <img class="img-responsive" src="../assets/img/timeline/electric-record-player.jpg" height="200" width="300" />
+                <br>
+                Os tocadores de discos elétricos tornaram-se populares dado seu preço acessível, ser portátil, à bateria e possuirem amplificadores e auto-falantes.
+              </div>
+            </li>
+            
+            <li>
+              <div>
+                <time>1964</time> 
+                <img class="img-responsive" src="../assets/img/timeline/cassette.jpg" height="200" width="300" />
+                <br>
+                A empresa Philips desenvolveu, em 1963 na Bélgica, a fita cassette, sendo 1/4 do tamanho das fitas magnéticas da época. Com isso, em 1964, lançou o tocador cassette compacto, portátil e à bateria
+              </div>
+            </li>
+            <li>
+              <div>
+                <time>1970</time> 
+                <img class="img-responsive" src="../assets/img/timeline/boombox.jpg" height="200" width="300" />
+                <br>
+                É criado no Japão o Boombox, possuindo sepaço para uma ou duas fitas cassettes, rádio AM/FM e, geralmente, uma alça para carregar. Sua popularidade deu-se pela qualidade do som e tamanho compacto.
+              </div>
+            </li>
+            <li>
+              <div>
+                <time>1982</time> 
+                <img class="img-responsive" src="../assets/img/timeline/discman.jpg" height="200" width="300" />
+                <br>
+                A Sony desenvolve o primeiro tocador de CD. Os tocadores de CDs portáteis foram então introduzidos em 1984, porém só se tornaram populares nos anos 90.
+              </div>
+            </li>
+            <li>
+              <div>
+                <time>1998</time> 
+                <img class="img-responsive" src="../assets/img/timeline/mp3.jpg" height="300" width="200" />
+                <br>
+                O primeiro tocador MP3, MPMan, foi desenvolvido pela SaeHan Information Systems, na Coréia do Sul. Porém, por causa do preço alto, inconveniente para o uso e restritivo, foi um fracasso. Alguns meses depois, Rio PMP300 criado pela Diamond Multimedia era mais barato, conectava-se facilmente ao computador, tonando-se relativamente bem sucedido.
+              </div>
+            </li>
+            <li>
+              <div>
+                <time>2002</time> 
+                <img class="img-responsive" src="../assets/img/timeline/streaming.png" height="200" width="300" />
+                <br>
+                Aproveitando-se da internet e advento dos dispositivos, serviços de streaming tem se tornado populares. Não é mais necessário ter acesso à música fisicamente, basta utilizar os serviços pagos ou gratuítos disponibilizados por empresas como YouTube, Spotify. Isso possibilita o acesso e a descoberta de novas músicas facilmente, sem a compra física de CDs, LPs.
+              </div>
+            </li>
+          </ul>
+        </section>
+      <hr>
         <!-- START THE FEATURETTES -->
 
-        <hr class="featurette-divider">
+        <!-- <hr class="featurette-divider">
 
         <div class="row featurette">
           <div class="col-md-7">
@@ -229,7 +463,7 @@
           </div>
         </div>
 
-        <hr class="featurette-divider">
+        <hr class="featurette-divider"> -->
 
         <!-- /END THE FEATURETTES -->
 
@@ -269,6 +503,7 @@
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/timeline.js"></script>
 
 </body>
 
